@@ -8,6 +8,7 @@ import fileinput
 import sys
 
 file = sys.argv[1]
+# puzzle counter
 count = 1
 
 json_puzzles = open(file, 'r')
@@ -20,16 +21,16 @@ def extract():
 	last_pos = json_tree['last_pos']
 	last_move = json_tree['last_move']
 
-	# final FEN
+	# final FEN position
 	board = chess.Board(last_pos)
 	board.push_uci(last_move)
 	fen = board.fen()
 
 	# whitch turn to move
 	if board.turn == True:
-		turn = '<img src="w.png"> White'
+		turn = '&#9711; White'
 	else:
-		turn = '<img src="b.png"> Black'
+		turn = '&#9899; Black'
 
 	# fetching pgn from lichess
 	html = urlopen('https://lichess.org/{0}'.format(gameID))
@@ -47,11 +48,10 @@ def extract():
 	w_player_elo =  game.headers["WhiteElo"]
 	b_player = game.headers["Black"]
 	b_player_elo =  game.headers["BlackElo"]
-
 	timecontrol = game.headers["TimeControl"]
 
-	# generate the html between each <td></td>
-	td_str = """<td><strong>{w} </strong>({we}) -<strong> {b} </strong>({be})<br /><a href="https://lichess.org/{id}">Gamelink</a>.</p><p>{t} to play.</p><p><a href="https://lichess.org/analysis/{f}"><img src="http://www.fen-to-image.com/image/25/double/coords/{f}" /></a></p></td>"""
+	# generate the html between each <td></td> using all the data
+	td_str = """<td style="text-align: center;"><strong>{w} </strong>({we}) -<strong> {b} </strong>({be})<br /><a href="https://lichess.org/{id}">Gamelink</a>.<br />{t} to play.<br /><a href="https://lichess.org/analysis/{f}"><img src="http://www.fen-to-image.com/image/25/double/coords/{f}" /></a></td>"""
 	td = td_str.format(w=w_player, b=b_player, we=w_player_elo, be=b_player_elo, id=gameID, f=fen, t=turn)
 
 	print("Creation of puzzle n°{0}".format(count))
@@ -78,15 +78,15 @@ for line in json_puzzles:
 		lichess4545.append(puzzle[0])
 	elif puzzle[1] == "1800+30":
 		league = "Lonewolf"
-		
 		lonewolf.append(puzzle[0])
 	else:
 		league = "others"
-		
 		others.append(puzzle[0])
 
+json_puzzles.close()
+
 # format to html
-header = """<table align="center" style="width:90%">"""
+header = """<p><em>Click on the images for the&nbsp;solution.</em></p><table align="center" style="width:90%">"""
 tr_lichess4545 = """<tr><td colspan=4><p style="text-align:center"><span style="font-size:14px">Lichess4545</span></p></td></tr>"""
 tr_lonewolf = """<tr><td colspan=4><p style="text-align:center"><span style="font-size:14px">Lonewolf</span></p></td></tr>"""
 tr_series = """<tr><td colspan=4><p style="text-align:center"><span style="font-size:14px">Series</span></p></td></tr>"""
@@ -140,6 +140,3 @@ if others:
 	each_league(others, tr_others)
 
 print (foot)
-
-
-json_puzzles.close()
