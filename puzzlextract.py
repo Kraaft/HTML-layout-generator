@@ -82,7 +82,7 @@ for line in json_puzzles:
 json_puzzles.close()
 
 # format to html
-header = """<p><em>Click on the images for the&nbsp;solution.</em></p><table align="center" style="width:90%">"""
+header = """<p><em>Click on the images for the solution.</em></p><table align="center" style="width:90%">"""
 tr_lichess4545 = """<tr><td colspan=4><p style="text-align:center"><span style="font-size:14px">Lichess4545</span></p></td></tr>"""
 tr_lonewolf = """<tr><td colspan=4><p style="text-align:center"><span style="font-size:14px">Lonewolf</span></p></td></tr>"""
 tr_series = """<tr><td colspan=4><p style="text-align:center"><span style="font-size:14px">Series</span></p></td></tr>"""
@@ -93,7 +93,7 @@ foot = """</table>"""
 
 print(header)
 
-# repeat the script for each league seprately
+# repeat the script for each league separately
 def each_league(league, tr_league):
 	print(tr_league)
 
@@ -125,7 +125,7 @@ def each_league(league, tr_league):
 			u += 1
 		print (tr_close)
 
-# last check befor comiting the script
+# check if any entry before comiting the script
 if lichess4545:
 	each_league(lichess4545, tr_lichess4545)
 if lonewolf:
