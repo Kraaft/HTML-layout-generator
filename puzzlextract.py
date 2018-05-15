@@ -16,13 +16,11 @@ count = 1
 json_puzzles_raw = []
 for line in fileinput.input(sys.argv[1:]):
 	files_lines = line.strip()
+	# filter the blank lines
 	if re.match(r'^\s*$', files_lines):
 		pass
 	else:
 		json_puzzles_raw.append(files_lines)
-
-# filter the blank lines
-json_puzzles = filter(lambda x: not re.match(r'^\s*$', x), json_puzzles_raw)
 
 def extract():
 	global count
