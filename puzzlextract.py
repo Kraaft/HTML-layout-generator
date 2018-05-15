@@ -6,12 +6,23 @@ import time
 from io import StringIO
 import fileinput
 import sys
+import re
+import fileinput
 
-file = sys.argv[1]
 # puzzle counter
 count = 1
 
-json_puzzles = open(file, 'r')
+# open multiple file source
+json_puzzles_raw = []
+for line in fileinput.input(sys.argv[1:]):
+	files_lines = line.strip()
+	if re.match(r'^\s*$', files_lines):
+		pass
+	else:
+		json_puzzles_raw.append(files_lines)
+
+# filter the blank lines
+json_puzzles = filter(lambda x: not re.match(r'^\s*$', x), json_puzzles_raw)
 
 def extract():
 	global count
@@ -78,8 +89,6 @@ for line in json_puzzles:
 		lonewolf.append(puzzle[0])
 	else:
 		others.append(puzzle[0])
-
-json_puzzles.close()
 
 # format to html
 header = """<p style="text-align: justify; margin-left: 40px;"><em>Click on the images for the solution.</em></p><table align="center" style="width:90%">"""
