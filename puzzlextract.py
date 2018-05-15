@@ -71,16 +71,12 @@ for line in json_puzzles:
 	puzzle = extract()
 	# ordering puzzles by league
 	if puzzle[1] == "5400+30":
-		league = "Series"
 		series.append(puzzle[0])
 	elif puzzle[1] == "2700+45":
-		league = "Lichess4545"
 		lichess4545.append(puzzle[0])
 	elif puzzle[1] == "1800+30":
-		league = "Lonewolf"
 		lonewolf.append(puzzle[0])
 	else:
-		league = "others"
 		others.append(puzzle[0])
 
 json_puzzles.close()
