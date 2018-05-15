@@ -82,7 +82,7 @@ for line in json_puzzles:
 json_puzzles.close()
 
 # format to html
-header = """<p><em>Click on the images for the solution.</em></p><table align="center" style="width:90%">"""
+header = """<p style="text-align: justify; margin-left: 40px;"><em>Click on the images for the solution.</em></p><table align="center" style="width:90%">"""
 tr_lichess4545 = """<tr><td colspan=4><p style="text-align:center"><span style="font-size:14px">Lichess4545</span></p></td></tr>"""
 tr_lonewolf = """<tr><td colspan=4><p style="text-align:center"><span style="font-size:14px">Lonewolf</span></p></td></tr>"""
 tr_series = """<tr><td colspan=4><p style="text-align:center"><span style="font-size:14px">Series</span></p></td></tr>"""
