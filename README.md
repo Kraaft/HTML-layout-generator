@@ -4,3 +4,5 @@ HTML generator from a JSON list of chess puzzles
 `python puzzlextract.py <#json file1> <#json file2> <#json file3> <#...>`
 
 and if you have some manual puzzle to input just add `--manual` at the end.
+
+The output file will be generated where is the script with the name `generated_html_table.html`
