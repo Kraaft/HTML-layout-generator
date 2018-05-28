@@ -234,7 +234,7 @@ file_html.write(foot)
 
 # End of the script
 file_html.close()
-print("\n\n# Output generated in the file \"generated_html_table.html\""
+print("\n\n# Output generated in the file " + Fore.GREEN + "\"generated_html_table.html\"" + Fore.RESET +
 "\n########################"
 "\n# " + Fore.YELLOW + "End of the Generator." + Fore.RESET +
 "#\n########################"
