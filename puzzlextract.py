@@ -139,7 +139,7 @@ if manual_puzzles:
 		ext_manual = manual_puzzles[x]
 		fen = ext_manual[2]
 		turn = ext_manual[3]
-		if turn == "w" or "white":
+		if turn == "w" or t == "white":
 			turn = '&#9711; White'
 		else:
 			turn = '&#9899; Black'
